@@ -1,41 +1,24 @@
 {
   "fill" : {
-    "solid" : "display-p3:0.10980,0.68627,1.00000,1.00000"
+    "solid" : "display-p3:1,1,1,1"
   },
   "groups" : [
     {
       "layers" : [
         {
-          "glass-specializations" : [
-            {
-              "value" : true
-            },
-            {
-              "idiom" : "square",
-              "value" : true
-            }
-          ],
           "hidden" : false,
           "image-name" : "TCM-logo.png",
           "name" : "TCM-logo",
           "opacity" : 1,
           "position" : {
-            "scale" : 7,
+            "scale" : 1,
             "translation-in-points" : [
               0,
               0
             ]
           }
         }
-      ],
-      "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0.5
-      },
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.5
-      }
+      ]
     }
   ],
   "supported-platforms" : {

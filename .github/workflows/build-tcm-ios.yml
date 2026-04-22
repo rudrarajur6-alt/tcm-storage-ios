@@ -21,18 +21,16 @@ jobs:
         run: xcodebuild -resolvePackageDependencies -project Nextcloud.xcodeproj
       - name: Build for iOS Simulator
         run: |
-          # Use whatever simulator SDK is installed; override deployment target to match
+          # Runner has iOS 18.5/18.6/26.x — not the project's 18.4 target
           xcodebuild \
             -project Nextcloud.xcodeproj \
             -scheme Nextcloud \
             -configuration Debug \
-            -sdk iphonesimulator \
+            -destination "platform=iOS Simulator,name=iPhone 16,OS=18.6" \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             IPHONEOS_DEPLOYMENT_TARGET=17.0 \
-            ARCHS=arm64 \
-            ONLY_ACTIVE_ARCH=NO \
             build | tee xcodebuild.log | xcpretty || (tail -200 xcodebuild.log && exit 1)
       - name: Package .app for Appetize
         run: |

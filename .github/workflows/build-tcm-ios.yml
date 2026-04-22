@@ -41,13 +41,13 @@ jobs:
             build | tee xcodebuild.log | xcpretty || (tail -400 xcodebuild.log && exit 1)
       - name: Package .app for Appetize
         run: |
-          mkdir -p out
-          APP_PATH=$(find build/Build/Products/Debug-iphonesimulator -maxdepth 1 -name "*.app" -type d | head -1)
+          set -x
+          mkdir -p "$GITHUB_WORKSPACE/out"
+          APP_PATH=$(find "$GITHUB_WORKSPACE/build/Build/Products/Debug-iphonesimulator" -maxdepth 1 -name "*.app" -type d | head -1)
           echo "App path: $APP_PATH"
           cd "$(dirname "$APP_PATH")"
-          zip -r /Users/runner/work/_temp/tcm-storage-ios.zip "$(basename "$APP_PATH")"
-          cp /Users/runner/work/_temp/tcm-storage-ios.zip ../../../../../out/tcm-storage-ios.zip
-          ls -la ../../../../../out/
+          zip -r "$GITHUB_WORKSPACE/out/tcm-storage-ios.zip" "$(basename "$APP_PATH")"
+          ls -la "$GITHUB_WORKSPACE/out/"
       - uses: actions/upload-artifact@v4
         with:
           name: tcm-storage-ios-app
